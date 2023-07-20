@@ -1,0 +1,48 @@
+{% set section = feedback %}
+<section class="{{section.id}} section !pb-[100px] overflow-hidden">
+  <div class="container">
+    <h2 class="section-title mb-8 md:mb-10 md:w-[500px] xl:w-[870px]">{{section.title}}</h2>
+    <div class="feedback-wrapper mb-6 md:mb-8">
+      <ul class="carousel">
+        {% for item in section.cards %}
+
+        <li
+          class="h-[331px] rounded-xl bg-second px-[30px] py-8 shadow-grey md:!h-[306px] mdOnly:!w-[475px]"
+        >
+          <div class="flex h-[119px] flex-col items-center md:h-[84px] md:flex-row">
+            {% if item.image %}
+            <picture>
+              <source
+                srcset="
+                  ./assets/images/feedback/{{item.image.url}}.webp    1x,
+                  ./assets/images/feedback/{{item.image.url}}@2x.webp 2x
+                "
+                type="image/webp"
+              />
+              <img
+                src="./assets/images/feedback/{{item.image.url}}.jpg"
+                srcset="./assets/images/feedback/{{item.image.url}}@2x.jpg 2x"
+                alt="{{item.image.alt}}"
+                width="84"
+                height="84"
+                loading="lazy"
+                class="rounded-full"
+              />
+            </picture>
+            {% endif %}
+
+            <h3 class="section-subtitle !text-[16px] md:ml-6 smOnly:mt-[10px] smOnly:text-center">
+              {{item.name}}
+            </h3>
+            <p class="paragraph !text-blue-dark md:ml-auto smOnly:mt-1">{{item.data}}</p>
+          </div>
+          <p class="paragraph feedback-overflow mt-1 !h-[132px] overflow-auto md:mt-6">
+            {{item.text}}
+          </p>
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

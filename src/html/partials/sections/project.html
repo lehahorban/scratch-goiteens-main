@@ -1,0 +1,44 @@
+{% set section = project %}
+<section class="{{section.id}} section">
+  <div class="container">
+    <h2 class="section-title mb-4 md:mb-6">{{section.title}}</h2>
+    <h3 class="section-subtitle !text-[17px] !leading-[22px] md:w-[470px] smOnly:mb-6">
+      {{section.subtitle}}
+    </h3>
+    <ul class="grid gap-8 md:grid-cols-3 md:gap-[22px] xl:gap-[30px]">
+      {% for item in section.cards %}
+      <li class="project-card rounded-xl px-6 pb-12 pt-6 shadow-grey md:px-4 md:pb-6 xl:px-[26px]">
+        <picture>
+          <source
+            srcset="
+              ./assets/images/project/{{item.image.url}}.webp    1x,
+              ./assets/images/project/{{item.image.url}}@2x.webp 2x
+            "
+            type="image/webp"
+          />
+          <img
+            class="mx-auto mb-6 block w-full"
+            src="./assets/images/project/{{item.image.url}}.png"
+            srcset="./assets/images/project/{{item.image.url}}@2x.png 2x"
+            alt="{{item.image.alt}}"
+            width="370"
+            height="246"
+            loading="lazy"
+          />
+        </picture>
+        <h3 class="mb-4 text-[20px] font-bold leading-[26px] text-[#202020]">{{item.title}}</h3>
+        <p class="mb-4 text-[13px] leading-[19px] text-black-light">{{item.description}}</p>
+
+        <a
+          href="{{item.link.url}}"
+          class="btn colored-hover inline-block !px-4 !py-[10px] visited:text-[#800080]"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          {{item.link.text}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
